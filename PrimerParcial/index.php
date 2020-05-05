@@ -15,7 +15,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 $path = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : "";
 $headers = getallheaders();
 $token = $headers['token']??null;
-$respuesta;
+$respuesta = '';
 
 
 switch($path){
@@ -88,6 +88,9 @@ switch($path){
         else if ($method == 'GET'){
             $respuesta = Materia::mostrarMaterias($token);
         }
+        else{
+            echo 'Método no disponible';
+        }
 
         echo $respuesta;
 
@@ -112,6 +115,9 @@ switch($path){
         }
         else if ($method == 'GET'){
             $respuesta = Profesor::mostrarProfesores($token);
+        }
+        else{
+            echo 'Método no disponible';
         }
 
         echo $respuesta;
@@ -143,13 +149,16 @@ switch($path){
         else if ($method == 'GET'){
             $respuesta = Asignacion::mostrarAsignacion($token);
         }
+        else{
+            echo 'Método no disponible';
+        }
 
         echo $respuesta;
 
     break;
 
     default:
-
+        echo 'Error ruta no encontrada';
     break;
 }
 
