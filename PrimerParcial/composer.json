@@ -1,6 +1,0 @@
-{
-    "name": "rodri/primer-parcial",
-    "require": {
-        "firebase/php-jwt": "^5.2"
-    }
-}
