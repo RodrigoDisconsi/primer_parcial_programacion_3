@@ -54,4 +54,28 @@ class Profesor
         $folder = "imagenes/";
         return move_uploaded_file($path, $folder.time().'-'.$nombre);
     }
+
+    public static function mostrarProfesores($token)
+    {
+        $token = Auth::validarToken($token);
+        if ($token) {
+            $profesores = File::leer('profesores.xxx') ?? null;
+            if ($profesores) {
+                return Profesor::stringProfesores($profesores, $token);
+            }
+        }
+        return 'Token inválido';
+    }
+
+    private static function stringProfesores($profesores)
+    {
+        $retorno = '';
+        foreach ($profesores as $key) {
+            $retorno = $retorno . 'Legajo: ' . $key->legajo . PHP_EOL;
+            $retorno = $retorno . 'Nombre: ' . $key->nombre . PHP_EOL;
+            $retorno = $retorno . 'Imagen: ' . $key->imagen['tmp_name'] . PHP_EOL . PHP_EOL;
+            $retorno = $retorno . '-----------------------' . PHP_EOL . PHP_EOL;
+        }
+        return $retorno;
+    }
 }

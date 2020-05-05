@@ -85,6 +85,9 @@ switch($path){
                 $respuesta = 'Faltan parametros';
             }
         }
+        else if ($method == 'GET'){
+            $respuesta = Materia::mostrarMaterias($token);
+        }
 
         echo $respuesta;
 
@@ -107,9 +110,9 @@ switch($path){
                 $respuesta = 'Faltan parametros';
             }
         }
-        // else if ($method == 'GET'){
-        //     $respuesta = Pizza::leerPizzas($token);
-        // }
+        else if ($method == 'GET'){
+            $respuesta = Profesor::mostrarProfesores($token);
+        }
 
         echo $respuesta;
 
@@ -137,9 +140,9 @@ switch($path){
                 $respuesta = 'Faltan parametros';
             }
         }
-        // else if ($method == 'GET'){
-        //     $respuesta = Pizza::leerPizzas($token);
-        // }
+        else if ($method == 'GET'){
+            $respuesta = Asignacion::mostrarAsignacion($token);
+        }
 
         echo $respuesta;
 

@@ -64,4 +64,29 @@ class Materia
         return false;
     }
 
+
+    public static function mostrarMaterias($token)
+    {
+        $token = Auth::validarToken($token);
+        if ($token) {
+            $materias = File::leer('materias.xxx') ?? null;
+            if ($materias) {
+                return Materia::stringMaterias($materias, $token);
+            }
+        }
+        return 'Token inválido';
+    }
+
+    private static function stringMaterias($materias)
+    {
+        $retorno = '';
+        foreach ($materias as $key) {
+            $retorno = $retorno . 'ID: ' . $key->id . PHP_EOL;
+            $retorno = $retorno . 'Materia: ' . $key->materia . PHP_EOL;
+            $retorno = $retorno . 'Cuatrimestre: ' . $key->cuatrimestre . PHP_EOL .PHP_EOL;
+            $retorno = $retorno . '-----------------------' . PHP_EOL . PHP_EOL;
+        }
+        return $retorno;
+    }
+
 }
